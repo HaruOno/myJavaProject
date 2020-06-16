@@ -2,8 +2,11 @@ class Solution {
     public static String whoLikesIt(String... names) {
 String[] str = new String[names.length];
 String result = "";
-        for(int i = 0; i < names.length; i++)
+int count = 0;
+        for(int i = 0; i < names.length; i++){
             str[i] = names[i];
+            count++;
+        }
         if (str.length ==0)
             result = ("no one likes this");
         else if(str.length == 1)
@@ -13,7 +16,7 @@ String result = "";
         else if (str.length ==3)
             result = (str[0]+", "+ str[1] + " and " + str[2] + " like this");
         else
-            result = (str[0] + ", " + str[1] + " and 2 others like this");
+            result = (str[0] + ", " + str[1] + " and "+ (count-2)+  " others like this");
         return result;
     }
 }
