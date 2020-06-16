@@ -1,0 +1,53 @@
+class Diamond {
+  public static String print(int n) {
+        if (n % 2 ==0)
+            return null;
+        else if (n<=0)
+            return null;
+        else
+        {
+            int count = n, subint = 0;
+            String str;
+            String str2 = "";
+            String substr;
+
+            for (int i = 0; i < count; i++)
+            {
+                substr = "";
+                str = "";
+                for(int k = 0; k < (count/2)-subint; k++)
+                {
+                    substr +=" ";
+                }
+                for(int j = 0; j < i+1; j++)
+                {
+                    str +="*";
+
+                }
+                str2 += substr + str+ "\n";
+                i ++;
+                subint ++;
+            }
+            subint -=2;
+            for (int i = count-2; i > 0; i--)
+            {
+                substr = "";
+                str = "";
+                for(int k = (count/2)-subint; k >0; k--)
+                {
+                    substr +=" ";
+                }
+                for(int j = i; j > 0; j--)
+                {
+                    str +="*";
+
+                }
+                str2 += substr + str+ "\n";
+                i --;
+                subint --;
+            }
+            return str2;
+        }
+    
+	}
+}
