@@ -1,0 +1,23 @@
+public class Tortoise {
+    public static int[] race(int v1, int v2, int g) {
+        int time = -1;
+        double count1 = 0, count2 = g;
+        if(v1>=v2)
+          return null;
+        else
+        while(count1<count2)
+        {
+            count1 += (v2*1.00)/3600;
+            count2 += (v1*1.00)/3600;
+            time++;
+
+        }
+        int[] result = new int[3];
+        result[0] = time/3600;
+        time = time - result[0] * 3600;
+        result[1] = time/60;
+        time = time - result[1] * 60;
+        result[2] = time % 60;
+        return (result);
+    }
+}
