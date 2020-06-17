@@ -1,0 +1,45 @@
+import java.util.Arrays;
+public class WeightSort {
+	
+	public static String orderWeight(String strng) {  
+        if (!strng.equals(null) & !strng.equals("")) 
+        {
+        String[] list = strng.trim().split("\\s+");
+        Arrays.sort(list);
+        Integer[] list2 = new Integer[list.length];
+        for(int i = 0; i < list.length; i++)
+        {
+            int summ = 0;
+            double count = Double.parseDouble(list[i]);
+            while (count != 0)
+            {
+                summ += count % 10;
+                count /=10;
+
+            }
+            list2[i] = summ;
+        }
+        for(int i = 0; i < list.length; i++)
+            for(int j = 0; j < (list.length-1) ; j++)
+            {
+                int count = 0;
+                String str = "";
+                if(list2[j]>list2[j+1])
+                {
+                        count = list2[j];
+                        list2[j] = list2[j+1];
+                        list2[j+1] = count;
+                        str = list[j];
+                        list[j] = list[j+1];
+                        list[j+1] = str;
+                }
+            }
+        String str = "";
+        for(int i = 0; i < list2.length; i++)
+            str +=list[i]+ " ";
+               
+        return str.trim();
+        }
+        else return "";
+	}
+}
