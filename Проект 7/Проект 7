@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+public class SumSquaredDivisors {
+	
+	public static String listSquared(long m, long n) {		    
+        ArrayList<Long> listOne = new ArrayList<Long>();
+        ArrayList<Long> listTwo = new ArrayList<Long>();
+
+        long test = 0;
+        for(long i = m; i < n; i++)
+        {
+            long count = 0;
+            for(long j = 1; j <=i; j++)
+            {
+                if(i % j == 0)
+                {
+                    count +=j*j;
+
+                }
+
+            }
+            test = (long) Math.sqrt(count);
+            if(test*test==count)
+            {
+                listOne.add(i);
+                listTwo.add(count);
+            }
+        }
+
+        String  str = "";
+        for(int i = 0; i < listOne.size(); i++)
+        {
+            str +="[" + listOne.get(i) + ", " + listTwo.get(i) + "]";
+            if(i == listOne.size()-1)
+                break;
+            else
+                str +=", ";
+        }
+        StringBuffer sb = new StringBuffer("[]");
+        sb.insert(1,str);
+        str = String.valueOf(sb);
+        return str;
+	}
+}
