@@ -1,0 +1,73 @@
+import java.util.*;
+
+class Permutations {
+    
+    public static List<String> singlePermutations(String s) {  
+    ArrayList<String> b = new ArrayList<String>();
+    b.add(s);
+         if (s.length() == 1)
+            return b;
+        else {
+            char[] temp = s.toCharArray();
+            String[] list = new String[temp.length];
+            for (int i = 0; i < temp.length; i++) {
+                list[i] = (String.valueOf(temp[i]));
+            }            
+            String [] fafa = filteredOrders(list).toArray(new String[0]);
+            ArrayList<String> list2 = new ArrayList<String>();
+            for(int i = 0; i < fafa.length; i++)            
+                list2.add(fafa[i]); 
+            return list2;
+        }       
+    }
+    public static Set<String> filteredOrders(String[] arr) 
+    {
+
+        Set<String> s = new HashSet<String>();
+        for (StringBuilder sb : orders(arr)) 
+        {
+            s.add(sb.toString());
+        }
+        return s;
+    }
+
+    public static List<StringBuilder> orders(String[] arr) 
+    {
+
+        if (arr.length == 2) 
+        {
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append(arr[0]);
+            sb1.append(arr[1]);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(arr[1]);
+            sb2.append(arr[0]);
+            return Arrays.asList(sb1, sb2);
+        }
+        else 
+        {
+            List<StringBuilder> l = new ArrayList<StringBuilder>();
+            for (int i = 0; i < arr.length; i++)
+            {
+                for (StringBuilder sb : orders(excludingCopy(arr, i))) 
+                {
+                    l.add(sb.insert(0, arr[i]));
+                }
+            }
+            return l;
+        }
+    }
+
+    private static String[] excludingCopy(String[] arr, int idx) 
+    {
+        String[] result = new String[arr.length - 1];
+        for (int i = 0, j = 0; i < arr.length; i++) 
+        {
+            if (i != idx) 
+            {
+                result[j++] = arr[i];
+            }
+        }
+        return result;
+    }
+}
